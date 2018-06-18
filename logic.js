@@ -9,13 +9,13 @@
 $(document).ready(function() {
 
 
-var config = {
-    apiKey: "AIzaSyAB5zRBKOqOaP0g4HKgR94tVG4B9_dzb7A",
-    authDomain: "proejct-15960.firebaseapp.com",
-    databaseURL: "https://proejct-15960.firebaseio.com",
-    projectId: "proejct-15960",
-    storageBucket: "proejct-15960.appspot.com",
-    messagingSenderId: "957116997644"
+  var config = {
+    apiKey: "AIzaSyB70hEqLwQCc2TZCxqrrfC0tDMqBKYxEpk",
+    authDomain: "trains-87543.firebaseapp.com",
+    databaseURL: "https://trains-87543.firebaseio.com",
+    projectId: "trains-87543",
+    storageBucket: "",
+    messagingSenderId: "929451475740"
   };
  
   firebase.initializeApp(config);
@@ -26,7 +26,7 @@ var config = {
 
 
   $("body").on("click", "#submit-id" , function(event) {
-  
+
   event.preventDefault();
 
   // Get the input values
@@ -34,6 +34,7 @@ var config = {
   var destId = $( "#destId" ).val().trim();
   var firstTrainTime = $("#firstTrainId").val().trim();
   var freqId = $( "#freqId" ).val().trim();
+
 
 
   // Moment JS
@@ -54,8 +55,6 @@ var config = {
     Arrival: nextTrain,
     minutesAway: minutesAway,
   });
-
-  
 
     database.ref().on("child_added", function(childSnapshot) {
 

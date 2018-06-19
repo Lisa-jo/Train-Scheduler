@@ -1,11 +1,3 @@
-// Initialize Firebase
-// Make sure to match the configuration to the script version number in the HTML
-// (Ex. 3.0 != 3.7.0)
-
-
-// Assign the reference to the database to a variable named 'database'
-//var database = ...
-
 $(document).ready(function() {
 
 
@@ -20,10 +12,7 @@ $(document).ready(function() {
  
   firebase.initializeApp(config);
 
-
-
   var database = firebase.database();
-
 
   $("body").on("click", "#submit-id" , function(event) {
 
@@ -35,15 +24,11 @@ $(document).ready(function() {
   var firstTrainTime = $("#firstTrainId").val().trim();
   var freqId = $( "#freqId" ).val().trim();
 
-
-
   // Moment JS
   var firstTimeConverted = moment(firstTrainTime, "hh:mm A").subtract(10, "years");
   var timeRemainder = moment().diff(moment(firstTimeConverted), "minutes") % freqId;
   var minutesAway = freqId - timeRemainder;
   var nextTrain = moment().add(minutesAway, "minutes").format("hh:mm A");
-  
-  
     
     database.ref().push(
 
@@ -58,13 +43,10 @@ $(document).ready(function() {
 
     database.ref().on("child_added", function(childSnapshot) {
 
-
       var fireTrainName  = childSnapshot.val().trainName;
       var Firedest   = childSnapshot.val().destination;
       var fireArrival  = childSnapshot.val().Arrival;
       var fireFreq  = childSnapshot.val().frequency;
-
-
 
       // Appending data to the table
       $(".table").append("<tr><td> " + childSnapshot.val().trainName +
@@ -75,17 +57,11 @@ $(document).ready(function() {
     
     })
 
-
-
   $( "#trainNameId" ).val("");
   $( "#destId" ).val("");
   $( "#firstTrainId" ).val("");
   $( "#freqId" ).val("");
 
- 
-
-
 })
-
 
 });
